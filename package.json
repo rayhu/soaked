@@ -1,0 +1,44 @@
+{
+    "name": "soaked",
+    "version": "1.0.0",
+    "description": "A socked client to establish websocket bridge",
+    "homepage": "https://soaked.hulaorui.com",
+    "repository": "rayhu/socked",
+    "main": "client.js",
+    "scripts": {
+        "start": "node server.js",
+        "build":"pkg client.js --out-path ./builds",
+        "dev": "nodemon server.js",
+        "lint": "eslint --ignore-path .gitignore . && prettier --check --ignore-path .gitignore \"**/*.{json,md,yaml,yml}\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Ray Hu",
+    "license": "ISC",
+    "files": [
+        "../../docs/LICENSE.LGPL-3",
+        "websockify.js"
+    ],
+    "bin": {
+        "websockify": "./websockify.js"
+    },
+    "engines": {
+        "node": ">=0.8.9"
+    },
+    "dependencies": {
+        "js-yaml": "^3.13.1",
+        "mime-types": "latest",
+        "optimist": "latest",
+        "ws": "^7.2.3"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.1",
+        "eslint-plugin-prettier": "^3.1.3",
+        "nodemon": "^2.0.3",
+        "prettier": "2.0.4"
+    },
+    "optionalDependencies": {
+        "bufferutil": "^4.0.1",
+        "utf-8-validate": "^5.0.2"
+    }
+}
