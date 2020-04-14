@@ -6,9 +6,9 @@
     "repository": "rayhu/socked",
     "main": "client.js",
     "scripts": {
-        "start": "node server.js",
+        "start": "node server/server.js",
         "build":"pkg client.js --out-path ./builds",
-        "dev": "nodemon server.js",
+        "dev": "nodemon server/server.js",
         "lint": "eslint --ignore-path .gitignore . && prettier --check --ignore-path .gitignore \"**/*.{json,md,yaml,yml}\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },

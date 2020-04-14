@@ -16,8 +16,6 @@ let configurations = {
             const yaml = require('js-yaml')
             let config = yaml.safeLoad(configFileStream)
 
-            //config.project = projectConfig // set global project config
-
             global.configuration_manager_config_values = config
             return global.configuration_manager_config_values
         } catch (error) {

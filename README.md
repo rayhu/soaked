@@ -1,4 +1,4 @@
-# Your app is socked by Web technology
+# Your app is socked in Web
 
 Socked is a websocket-based solution to publish your applications to Internet.
 

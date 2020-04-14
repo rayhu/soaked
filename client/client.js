@@ -12,14 +12,11 @@ function heartbeat() {
     }, 30000 + 1000)
 }
 
-const config = require('./configuration').getAll()
-const url = config.url
+const config = require('../configuration').getAll()
+const url = config.server_url
 
 const client = new WebSocket(url)
 
-client.on('error', function error(error) {
-    console.log(`WebSocket error: ${error}`)
-})
 
 client.on('open', function open() {
     console.log(`WebSocket connected`)
@@ -31,7 +28,15 @@ client.on('open', function open() {
     client.send(array)
 })
 
-client.on('message', function incoming(data) {
+client.on('open', heartbeat)
+client.on('ping', heartbeat)
+client.on('close', function clear() {
+    clearTimeout(this.pingTimeout)
+})
+client.on('error', function error (error) {
+    console.log(`WebSocket error: ${error}`)
+})
+client.on('message', function incoming (data) {
     console.log(`Received: ${data}`)
     if (data == 'console') {
         const duplex = WebSocket.createWebSocketStream(client, {
@@ -41,10 +46,4 @@ client.on('message', function incoming(data) {
         duplex.pipe(process.stdout)
         process.stdin.pipe(duplex)
     }
-})
-
-client.on('open', heartbeat)
-client.on('ping', heartbeat)
-client.on('close', function clear() {
-    clearTimeout(this.pingTimeout)
 })
