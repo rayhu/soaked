@@ -37,9 +37,20 @@ computer.
 
 ## Source Code
 
-server.js is deployed on wss://socked.hulaorui.com
+Please copy the config.yml.example as config.yml
+
+server.js is deployed on wss://socked.hulaorui.com as in config.yml
 
 client.js is what you can use to bridge your local service to a server channel.
+
+If you run from source code, execute: node client.js port
+
+Otherwise, run one of the executables in the release page
+```
+socked.exe <PORT>
+```
+
+If you build from source code, the executables are in the builds folder.
 
 Based on websockets.js Copyright (c) 2011 Einar Otto Stangvik
 <einaros@gmail.com> https://github.com/websockets/ws
