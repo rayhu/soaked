@@ -17,7 +17,7 @@ Your application will be empowered by the web technology.
 * Encrypted and authenticated.
 * Inbound connection, no need to worry about your private IP address or configure port mapping.
 
-You don't have to write a native app as your application's client, webpage can be your client.
+You don't have to write a native app as your application's client, webpage can be your client. 
 
 Think about Remote Desktop, VNC, DNS, BitTorrent, ShadowSocks and MQTT, all the non-HTTP protocols now is Soaked in web.
 
@@ -40,18 +40,19 @@ You run the Soaked client and let it bridge to port 3389. (client.js)
 The client.js opens a websocket connection to wss://Soaked.hulaorui.com
 (server.js)
 
-The webpage on https://soaked.hulaorui.com will list your service as remote
+The [Soaked server](https://soaked.hulaorui.com) will list your service as remote
 desktop over websockets (so it is reachable from webpage in browser)
 
-Your friend can use his browser and connect to wss://webSoaked.hulaorui.com, all
-network packets will be forwarded via the websocket channel to your local
-computer.
+While you are out, you can visit your home via a browser by connecting to wss://soaked.hulaorui.com, all network packets will be forwarded via the websocket channel to your local computer.
+
+You don't need to install RDP client such as [Remmina](https://gitlab.com/Remmina/Remmina), a webpage will display your home desktop.
+
 
 ## Source Code
 
 Please copy the config.yml.example as config.yml
 
-server.js is deployed on wss://Soaked.hulaorui.com as in config.yml
+server.js is deployed on wss://Soaked.hulaorui.com as described in config.yml
 
 client.js is what you can use to bridge your local service to a server channel.
 

@@ -1,9 +1,23 @@
-const WebSocket = require('ws')
-const net = require('net')
-let heart_timer 
+//const uuid=require("uuid")
+// Get configuration
+const path = require('path')
+const configFileFullName = path.join(__dirname, 'config.yml')
+const config = require('../configuration').getAll(configFileFullName)
 
+// Log Start Message
+console.log(`Soaked Client ${config.client_version}, bridge non-HTTP protocol to websockets!`)
+console.log("visit https://soaked.hulaorui.com for more information")
+
+// Initialize websockets
+const WebSocket = require('ws')
+const url = config.server_url
+console.log("Connecting to: " + url)
+const client = new WebSocket(url)
+
+// Heart beat
+let heart_timer
 function heartbeat() {
-    console.log("Heart beating")
+    console.log("HEARTBEAT")
     clearTimeout(heart_timer)
     // Use `WebSocket#terminate()`, which immediately destroys the connection,
     // instead of `WebSocket#close()`, which waits for the close timer.
@@ -12,17 +26,9 @@ function heartbeat() {
     heart_timer = setTimeout(() => {
         console.log("Heartbeat not received, disconnecting...")
         client.terminate()
-    }, 10000 + 2000)
+    }, config.ping_interval)
 }
 
-console.log("Soaked Client, bridge non-HTTP protocol to websockets!")
-console.log("visit https://soaked.hulaorui.com for more information")
-
-const config = require('./configuration').getAll()
-const url = config.server_url
-console.log("Connecting to: "+ url)
-const client = new WebSocket(url)
-client.on('open', heartbeat);
 client.on('ping', heartbeat)
 client.on('close', function clear () {
     clearTimeout(this.pingTimeout)
@@ -31,10 +37,11 @@ client.on('error', function error (error) {
     console.log(`WebSocket error: ${error}`)
 })
 
+// Create connection to server
 client.on('open', function open() {
     heartbeat()
     console.log(`WebSocket connected`)
-    client.send("Hello")
+    client.send(`Hello, Soaked Client ${config.send_client_version ? ("version: " + config.client_version) : ""}`)
 
     // You can also send binary data
     // const array = new Float32Array(50)
@@ -45,18 +52,19 @@ client.on('open', function open() {
 })
 
 client.on('message', function incoming (data) {
-    console.log(`Received: ${data}`)
+    console.log(`RECEIVED: ${data}`)
     // if receive this command, then bridge to the configed socket.
     if (data == 'Please setup pipeline') {
         const duplex = WebSocket.createWebSocketStream(client, {
             encoding: 'utf8',
         })
-        console.log("pipeline triggered")
+        console.log("Creating pipeline")
 
+        const net = require('net')
         let redirect = net.createConnection(config.pipe_port, config.pipe_host)
         redirect.on('error', function (error) {
             console.log(`Connection to ${config.pipe_host}:${config.pipe_port} failed `);
-            client.send("failed")
+            client.send("Pipeline creation failed")
 
         })
         redirect.on('connect', function (connect) {
