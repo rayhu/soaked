@@ -15,6 +15,9 @@ function heartbeat() {
     }, 10000 + 2000)
 }
 
+console.log("Soaked Client, bridge non-HTTP protocol to websockets!")
+console.log("visit https://soaked.hulaorui.com for more information")
+
 const config = require('./configuration').getAll()
 const url = config.server_url
 console.log("Connecting to: "+ url)
@@ -31,13 +34,14 @@ client.on('error', function error (error) {
 client.on('open', function open() {
     heartbeat()
     console.log(`WebSocket connected`)
-    client.send("Hello, sending binary data")
+    client.send("Hello")
 
-    const array = new Float32Array(50)
-    for (var i = 0; i < array.length; ++i) {
-        array[i] = i * 2
-    }
-    //client.send(array)
+    // You can also send binary data
+    // const array = new Float32Array(50)
+    // for (var i = 0; i < array.length; ++i) {
+    //     array[i] = i * 2
+    // }
+    // client.send(array)
 })
 
 client.on('message', function incoming (data) {

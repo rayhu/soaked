@@ -71,4 +71,5 @@ const interval = setInterval(function ping () {
 ws_server.on('close', function close () {
     clearInterval(interval)
 })
-
+console.log("Soaked Server Started!")
+console.log("visit https://soaked.hulaorui.com for more information")
