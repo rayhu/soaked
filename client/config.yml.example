@@ -6,3 +6,5 @@ server_url: 'wss://soaked.hulaorui.com:9999'
 # pipe setting are for local network's native ports. It will be bridged to the server
 pipe_host: 127.0.0.1
 pipe_port: 3305
+
+# test with npx http-echo-server 3305

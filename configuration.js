@@ -3,7 +3,6 @@ const path = require('path')
 
 let configurations = {
     getAll (configFileFullName) {
-        console.log(configFileFullName)
         // if it was already loaded, then return it from memory
         if (global.configFileFullName){
             return global.configFileFullName
