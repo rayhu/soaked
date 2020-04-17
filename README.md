@@ -37,8 +37,7 @@ Suppose you run a local application on computer A and listens to a port 3389.
 
 You run the Soaked client and let it bridge to port 3389. (client.js)
 
-The client.js opens a websocket connection to wss://Soaked.hulaorui.com
-(server.js)
+The client.js opens a websocket connection to the default service wss://soaked.hulaorui.com:9999 which is handled by server.js.
 
 The [Soaked server](https://soaked.hulaorui.com) will list your service as remote
 desktop over websockets (so it is reachable from webpage in browser)
@@ -80,6 +79,7 @@ Based on websockets.js Copyright (c) 2011 Einar Otto Stangvik
 <einaros@gmail.com> https://github.com/websockets/ws
 
 Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+
 
 Inspired by the JavaScript implementation of the websockify WebSocket-to-TCP
 bridge/proxy.
