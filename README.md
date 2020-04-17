@@ -2,23 +2,17 @@
 
 Soaked is a websocket-based solution to publish your applications to Internet.
 
-In case your application requires a native app as client, now it can be substituted by a webpage.
-
-The default Soaked server is wss://soaked.hulaorui.com.
-
-Since it is open source, you can deploy your own server using the same source
-code.
+Many traditional applications listens on non-HTTP ports, thus require a native app as client, now the communication is substitued by websocket, you can use a  webpage to replace your native clients.
 
 ## How it works
 
 You run Soaked client on your computer and bridge to your local port. 
 
-Soaked client connects to Soaked server, establish a bi-directional channel based on websockets.
+Soaked client connects to Soaked server, establish a duplex channel using websockets.
 
-Soaked server exposes your own app to Internet via HTTP protocols, it also handles service discovery, encryption, and inbound connection and save firewall trouble.
+Soaked server exposes your own app to Internet via HTTPS/WSS protocols, it also handles service discovery, encryption, and inbound connection. The benefits are enomous, your client app can be a webpage, it can be discovered with search engine, it is very secure, and you don't have to care about the firewall trouble anymore.
 
-It means your application are empowered:
-
+Your application will be empowered by the web technology.
 * Be accessed by a browser instead of a native app.
 * Encrypted and authenticated.
 * Inbound connection, no need to worry about your private IP address or configure port mapping.
@@ -73,7 +67,13 @@ Soaked.exe <PORT>
 
 If you build from source code, the executables are in the builds folder.
 
+The default Soaked server is wss://soaked.hulaorui.com.
+
+Since it is open source, you can deploy your own server using the same source
+code.
+
 ## Credit
+
 
 Based on websockets.js Copyright (c) 2011 Einar Otto Stangvik
 <einaros@gmail.com> https://github.com/websockets/ws

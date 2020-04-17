@@ -8,8 +8,7 @@ let configurations = {
             return global.configuration_manager_config_values
 
         // if not, read the YML file and return it from there
-        let root = path.resolve('.')
-        const configFileFullName = path.join(root, 'config.yml')
+        const configFileFullName = path.join(__dirname, 'config.yml')
         let configFileStream = fs.readFileSync(configFileFullName, 'utf8')
         // try loading and parsing config file
         try {
@@ -24,5 +23,4 @@ let configurations = {
         }
     },
 }
-
 module.exports = configurations

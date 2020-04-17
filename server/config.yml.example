@@ -1,0 +1,3 @@
+send_server_version: true
+server_version: 0.0.1
+server_port: 3305
