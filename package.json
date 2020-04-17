@@ -25,10 +25,16 @@
         "node": ">=0.8.9"
     },
     "dependencies": {
+        "express": "^4.17.1",
         "js-yaml": "^3.13.1",
         "mime-types": "latest",
         "optimist": "latest",
-        "ws": "^7.2.3"
+        "ws": "^7.2.3",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "http-errors": "~1.6.3",
+        "morgan": "~1.9.1",
+        "pug": "2.0.0-beta11"
     },
     "devDependencies": {
         "eslint": "^6.8.0",
