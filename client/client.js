@@ -1,6 +1,11 @@
-//const uuid=require("uuid")
-// Get configuration
+#!/usr/bin/env node
+
+const WebSocket = require('ws')
+const net = require('net')
 const path = require('path')
+//const uuid=require("uuid")
+
+// Get configuration
 const configFileFullName = path.join(__dirname, 'config.yml')
 const config = require('../configuration').getAll(configFileFullName)
 
@@ -9,7 +14,6 @@ console.log(`Soaked Client ${config.client_version}, bridge non-HTTP protocol to
 console.log("visit https://soaked.hulaorui.com for more information")
 
 // Initialize websockets
-const WebSocket = require('ws')
 const url = config.server_url
 console.log("Connecting to: " + url)
 const client = new WebSocket(url)
@@ -60,7 +64,6 @@ client.on('message', function incoming (data) {
         })
         console.log("Creating pipeline")
 
-        const net = require('net')
         let redirect = net.createConnection(config.pipe_port, config.pipe_host)
         redirect.on('error', function (error) {
             console.log(`Connection to ${config.pipe_host}:${config.pipe_port} failed `);
