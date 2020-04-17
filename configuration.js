@@ -1,27 +1,27 @@
 const fs = require('fs')
-const path = require('path')
 
-let configurations = {
-    getAll (configFileFullName) {
-        // if it was already loaded, then return it from memory
-        if (global.configFileFullName){
+const configurations = {
+    getAll(configFileFullName) {
+        // If it was already loaded, then return it from memory
+        if (global.configFileFullName) {
             return global.configFileFullName
         }
 
-        // if not, read the YML file and return it from there
-        let configFileStream = fs.readFileSync(configFileFullName, 'utf8')
-        // try loading and parsing config file
+        // If not, read the YML file and return it from there
+        const configFileStream = fs.readFileSync(configFileFullName, 'utf8')
+        // Try loading and parsing config file
         try {
             const yaml = require('js-yaml')
-            let config = yaml.safeLoad(configFileStream)
-
+            const config = yaml.safeLoad(configFileStream)
             global.configFileFullName = config
+
             return global.configFileFullName
         } catch (error) {
-            console.error(JSON.stringify(error))
-            throw 'Failed to load configuration file'
+            console.error(
+                `Failed to load configuration file.${JSON.stringify(error)}`
+            )
+            throw error
         }
     },
 }
-
 module.exports = configurations
