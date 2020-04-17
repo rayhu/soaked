@@ -4,9 +4,7 @@ const configFileFullName = path.join(__dirname, 'config.yml')
 const config = require('../configuration').getAll(configFileFullName)
 
 const ws_server = require('./ws_server')
-ws_server.start(config);
-global.ws_server = ws_server
-
+global.wss = ws_server.start(config);
 
 const api_server = require('./api_server');
 api_server.listen(config.api_port, function () {
