@@ -1,9 +1,9 @@
 {
     "name": "soaked",
     "version": "1.0.0",
-    "description": "A socked client to establish websocket bridge",
+    "description": "A soaked client to establish websocket bridge",
     "homepage": "https://soaked.hulaorui.com",
-    "repository": "rayhu/socked",
+    "repository": "https://github.com/rayhu/soaked",
     "main": "client.js",
     "scripts": {
         "start": "node server/server.js",
