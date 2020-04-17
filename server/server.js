@@ -1,3 +1,10 @@
+//const uuid=require("uuid")
+const config = require('./configuration').getAll()
+const port = config.server_port
+
+const WebSocket = require('ws')
+const ws_server = new WebSocket.Server({ port: `${port}` })
+
 function noop () { }
 
 function heartbeat () {
@@ -6,34 +13,62 @@ function heartbeat () {
 
 function serviced (ws, req) {
     const client_ip = req.connection.remoteAddress
-    const proxy_header_ip = req.headers['x-forwarded-for'].split(/\s*,\s*/)[0]
-
     console.log(`Connected from ${client_ip}`)
-    console.log(`Proxy Header IP is  ${proxy_header_ip}`)
-
+    if (req.headers['x-forwarded-for']) {
+        const proxy_header_ip = req.headers['x-forwarded-for'].split(/\s*,\s*/)[0]
+        console.log(`Proxy Header IP is  ${proxy_header_ip}`)
+    }
+    ws.send(`Soaked Server, version 0.0.1`)
     ws.send(`Your public ip is: ${client_ip}`)
 
     ws.isAlive = true
     ws.on('pong', heartbeat)
 
+    ws.send("Please setup pipeline")
+
     ws.on('message', function incoming (message) {
         console.log('received: %s', message)
     })
+    ws.send("Test Message")
+
 }
 
-const WebSocket = require('ws')
-const wss = new WebSocket.Server({ port: 8080 })
-wss.on('connection', serviced)
+
+
+ws_server.on('connection', function connection (ws, req) {
+
+    ws.on('message', function incoming (message) {
+        console.log('received: %s', message);
+    })
+
+    const client_ip = req.connection.remoteAddress
+    console.log(`Connected from ${client_ip}`)
+    if (req.headers['x-forwarded-for']) {
+        const proxy_header_ip = req.headers['x-forwarded-for'].split(/\s*,\s*/)[0]
+        console.log(`Proxy Header IP is  ${proxy_header_ip}`)
+    }
+    ws.send(`Soaked Server, version 0.0.1`)
+    ws.send(`Your public ip is: ${client_ip}`)
+
+    ws.isAlive = true
+    ws.on('pong', heartbeat)
+
+    ws.send("Please setup pipeline")
+
+}
+)
 
 const interval = setInterval(function ping () {
-    wss.clients.forEach(function each (ws) {
+    console.log(`Pinging ${ws_server.clients.size} clients...`)
+    ws_server.clients.forEach(function each (ws) {
         if (ws.isAlive === false) return ws.terminate()
 
         ws.isAlive = false
         ws.ping(noop) // Pong messages are automatically sent in response to ping messages as required by the spec.
     })
-}, 30000)
+}, 5000)
 
-wss.on('close', function close () {
+ws_server.on('close', function close () {
     clearInterval(interval)
 })
+

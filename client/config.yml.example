@@ -1,0 +1,4 @@
+server_url: 'wss://socked.hulaorui.com:9999'
+# server_url: 'ws://localhost:8080'
+pipe_host: 127.0.0.1
+pipe_port: 3305
