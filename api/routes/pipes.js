@@ -5,8 +5,7 @@ const router = express.Router() /* GET clients pipes */
 router.get('/', (req, res) => {
     const clients = global.wss.clients[toArray]()
     console.log(`connected clients: ${clients.length}`)
-
-    return res.send(clients)
+    return res.send({"clients": clients})
 })
 router.post('/', (req, res) => res.send('Received a POST HTTP method'))
 router.put('/', (req, res) => res.send('Received a PUT HTTP method'))
