@@ -7,7 +7,7 @@ const path = require('path')
 
 // Get configuration
 const configFileFullName = path.join(__dirname, 'config.yml')
-const config = require('../configuration').getAll(configFileFullName) // Log Start Message
+const config = require('./configuration').getAll(configFileFullName) // Log Start Message
 console.log(
     `Soaked Client ${config.client_version}, bridge non-HTTP protocol to websockets!`
 )
