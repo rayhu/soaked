@@ -1,8 +1,8 @@
 # Your App is Soaked in Web
 
-Soaked is a websocket-based solution to publish your applications to Internet.
+Soaked is a websocket-based solution to convert native network applications to web applications.
 
-Many traditional applications listens on non-HTTP ports, thus require a native
+Traditional native applications listen on non-HTTP ports, thus require a native
 app as client, now the communication is substitued by websocket, you can use a
 webpage to replace your native clients.
 
