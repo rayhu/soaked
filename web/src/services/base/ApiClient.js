@@ -17,7 +17,7 @@ class ApiClient {
             params: query,
             method: "get",
             data: undefined,
-            headers: this.headers,
+            headers: undefined, //this.headers,
             validateStatus: () => true,
         })
         this.checkResponse(response, url, "get")
