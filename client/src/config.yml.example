@@ -1,10 +1,14 @@
 send_client_version: true
 client_version: 0.0.1
 
-server_url: 'wss://soaked.hulaorui.com:9999'
+server_url: 'ws://localhost:9998'
+ping_interval: 12000
+
+# server_url: 'wss://soaked.hulaorui.com:9999'
+
+# the port in server_url shall be same as the server_port in server's config.yml
+# server_url: 'ws://localhost:8080'
 
 # pipe setting are for local network's native ports. It will be bridged to the server
 pipe_host: 127.0.0.1
 pipe_port: 3305
-
-# test with npx http-echo-server 3305
