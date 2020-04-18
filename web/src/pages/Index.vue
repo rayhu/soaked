@@ -8,7 +8,21 @@
 </template>
 
 <script>
+import ApiClient from "../services/ApiClient"
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    
+  },
+  mounted() {
+    const apiClient = new ApiClient(settings.API_URL_BASE)
+
+  },
 }
 </script>

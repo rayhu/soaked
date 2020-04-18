@@ -158,3 +158,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+web/.envui
