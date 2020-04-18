@@ -1,7 +1,7 @@
 // Get configuration
 const path = require('path')
 const configFileFullName = path.join(__dirname, 'config.yml')
-const config = require('../configuration').getAll(configFileFullName)
+const config = require('./configuration').getAll(configFileFullName)
 
 const ws_server = require('./ws_server')
 global.wss = ws_server.start(config)
