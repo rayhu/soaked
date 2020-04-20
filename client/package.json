@@ -9,7 +9,7 @@
         "start": "node src/client.js",
         "build": "pkg src/client.js --out-path ./builds",
         "dev": "nodemon src/client.js",
-        "lint": "eslint --ignore-path .gitignore . --fix && prettier --write . ",
+        "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . ",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Ray Hu",
@@ -27,7 +27,9 @@
         "morgan": "~1.9.1",
         "optimist": "latest",
         "pug": "^2.0.4",
-        "ws": "^7.2.3"
+        "valid-url": "^1.0.9",
+        "ws": "^7.2.3",
+        "yargs": "^15.3.1"
     },
     "devDependencies": {
         "eslint": "^6.8.0",

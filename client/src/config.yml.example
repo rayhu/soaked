@@ -1,10 +1,20 @@
+# Versioning
+#======================
 send_client_version: true
 client_version: 0.0.1
 
-server_url: 'wss://soaked.hulaorui.com:9999'
+# Server URL
+#======================
+# If you run a wss server, make sure the server's listening port is same.
+server_url: 'ws://localhost:9998'
+# 'wss://soaked.hulaorui.com:9999'
 
-# pipe setting are for local network's native ports. It will be bridged to the server
-pipe_host: 127.0.0.1
-pipe_port: 3305
+# Clients will terminate if don't receive ping within this interval
+#======================
+ping_interval: 12000
 
-# test with npx http-echo-server 3305
+# Socket
+#======================
+# See usage to provide socket endpoint in command line.
+# socket: 127.0.0.1:3389
+
