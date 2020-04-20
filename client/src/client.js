@@ -8,13 +8,59 @@ const path = require('path')
 // Get configuration
 const configFileFullName = path.join(__dirname, 'config.yml')
 const config = require('./configuration').getAll(configFileFullName) // Log Start Message
+
+// Usage
+const argv = require('yargs').usage(
+    '$0 <socket> [url]',
+    `Soaked Client creates bridge between the TCP socket <host:port> and the WebSockets url. After it is established, your local socket is reachable from Internet by a webpage to ${config.server_url}/<your_token>`,
+    (yargs) => {
+        yargs
+            .positional('socket', {
+                describe: `the TCP socket endpoint you want to bridge`,
+                type: 'string',
+            })
+            .positional('url', {
+                describe: `the url that your bridge will publish to`,
+                type: 'string',
+                default: config.server_url,
+            })
+            .option('verbose', {
+                alias: 'v',
+                type: 'boolean',
+                description: 'Run with verbose logging',
+            })
+    }
+).argv
+
+// Validate socket argument
+const socket = argv.socket.split(':')
+if (socket.length != 2) {
+    console.log('Provided socket is invalid')
+    process.exit(1)
+}
+const pipe_host = socket[0]
+const pipe_port = Number(socket[1])
+console.log(Number.isInteger(pipe_port))
+if (!Number.isInteger(pipe_port) || pipe_port < 1 || pipe_port > 65535) {
+    console.log('Provided port is invalid')
+    process.exit(1)
+}
+
+// Validate url argument
+const url = argv.url ? argv.url : config.server_url
+const validUrl = require('valid-url')
+if (!validUrl.isUri(url)) {
+    console.log('Provided url is not valid')
+    process.exit(1)
+}
+
+// Starting message
 console.log(
     `Soaked Client ${config.client_version}, bridge non-HTTP protocol to websockets!`
 )
 console.log('visit https://soaked.hulaorui.com for more information')
 
 // Initialize websockets
-const url = config.server_url
 console.log(`Connecting to: ${url}`)
 const client = new WebSocket(url)
 
@@ -48,13 +94,10 @@ client.on('error', function error(error) {
 client.on('open', function open() {
     heartbeat()
     console.log('WebSocket connected')
-    client.send(
-        `Hello, Soaked Client ${
-            config.send_client_version
-                ? `version: ${config.client_version}`
-                : ''
-        }`
+    const start_message = `Hello, Soaked Client`.concat(
+        config.send_client_version ? `version: ${config.client_version}` : ''
     )
+    client.send(start_message)
 
     /*
      * You can also send binary data
@@ -75,13 +118,10 @@ client.on('message', function incoming(data) {
         })
         console.log('Creating pipeline')
 
-        const redirect = net.createConnection(
-            config.pipe_port,
-            config.pipe_host
-        )
+        const redirect = net.createConnection(pipe_port, pipe_host)
         redirect.on('error', function (error) {
             console.log(
-                `Connection to ${config.pipe_host}:${config.pipe_port} failed with error: ${error}`
+                `Connection to ${pipe_host}:${pipe_port} failed with error: ${error}`
             )
             client.send(`Pipeline creation failed: ${error}`)
         })

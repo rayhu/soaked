@@ -72,13 +72,13 @@ client.js is what you can use to bridge your local service to a server channel.
 If you run from source code, execute:
 
 ```
-node client.js port
+node client.js <host:port> [url]
 ```
 
 Otherwise, run one of the executables in the release page
 
 ```
-Soaked.exe <PORT>
+Soaked.exe <host:port> [url]
 ```
 
 If you build from source code, the executables are in the builds folder.
