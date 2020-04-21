@@ -25,7 +25,7 @@ const configurations = {
         }
     },
 
-    saveAll (configObj, configFileFullName){
+    saveAll (configObj){
         try {
             const yamlStr = yaml.safeDump(configObj)
             fs.writeFileSync(configFileFullName, yamlStr, 'utf8')
