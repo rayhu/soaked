@@ -8,5 +8,5 @@ global.wss = ws_server.start(config)
 
 const api_server = require('./api_server')
 api_server.listen(config.api_port, function () {
-    console.log(`API server listening on port ${config.api_port}`)
+    console.log(`Restful API server listening on port ${config.api_port}`)
 })
