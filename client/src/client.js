@@ -2,57 +2,17 @@
 
 const WebSocket = require('ws')
 const net = require('net')
-const path = require('path')
-// Const uuid=require("uuid")
 
 // Get configuration
-const configFileFullName = path.join(__dirname, 'config.yml')
-const config = require('./configuration').getAll(configFileFullName) // Log Start Message
+const config = require('./configuration').getAll()
 
-// Usage
-const argv = require('yargs').usage(
-    '$0 <socket> [url]',
-    `Soaked Client creates bridge between the TCP socket <host:port> and the WebSockets url. After it is established, your local socket is reachable from Internet by a webpage to ${config.server_url}/<your_token>`,
-    (yargs) => {
-        yargs
-            .positional('socket', {
-                describe: `the TCP socket endpoint you want to bridge`,
-                type: 'string',
-            })
-            .positional('url', {
-                describe: `the url that your bridge will publish to`,
-                type: 'string',
-                default: config.server_url,
-            })
-            .option('verbose', {
-                alias: 'v',
-                type: 'boolean',
-                description: 'Run with verbose logging',
-            })
-    }
-).argv
-
-// Validate socket argument
-const socket = argv.socket.split(':')
-if (socket.length != 2) {
-    console.log('Provided socket is invalid')
-    process.exit(1)
-}
-const pipe_host = socket[0]
-const pipe_port = Number(socket[1])
-console.log(Number.isInteger(pipe_port))
-if (!Number.isInteger(pipe_port) || pipe_port < 1 || pipe_port > 65535) {
-    console.log('Provided port is invalid')
-    process.exit(1)
+// generated client id at the first run
+if (!config.client_id) {
+    require('./init').run(config)
 }
 
-// Validate url argument
-const url = argv.url ? argv.url : config.server_url
-const validUrl = require('valid-url')
-if (!validUrl.isUri(url)) {
-    console.log('Provided url is not valid')
-    process.exit(1)
-}
+// Usage and validation of arguments
+const argv = require('./args').getAll()
 
 // Starting message
 console.log(
@@ -61,8 +21,8 @@ console.log(
 console.log('visit https://soaked.hulaorui.com for more information')
 
 // Initialize websockets
-console.log(`Connecting to: ${url}`)
-const client = new WebSocket(url)
+console.log(`Connecting to: ${argv.url}`)
+const client = new WebSocket(argv.url)
 
 // Heart beat
 let heart_timer
@@ -118,10 +78,10 @@ client.on('message', function incoming(data) {
         })
         console.log('Creating pipeline')
 
-        const redirect = net.createConnection(pipe_port, pipe_host)
+        const redirect = net.createConnection(argv.pipe_port, argv.pipe_host)
         redirect.on('error', function (error) {
             console.log(
-                `Connection to ${pipe_host}:${pipe_port} failed with error: ${error}`
+                `Connection to ${argv.pipe_port}:${argv.pipe_port} failed with error: ${error}`
             )
             client.send(`Pipeline creation failed: ${error}`)
         })

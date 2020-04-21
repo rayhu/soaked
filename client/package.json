@@ -27,6 +27,8 @@
         "morgan": "~1.9.1",
         "optimist": "latest",
         "pug": "^2.0.4",
+        "uuid": "^7.0.3",
+        "uuid-encoder": "^1.2.0",
         "valid-url": "^1.0.9",
         "ws": "^7.2.3",
         "yargs": "^15.3.1"
