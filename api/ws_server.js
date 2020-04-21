@@ -42,15 +42,18 @@ const ws_server = {
             ws.on('message', function incoming(message) {
                 console.log(`RECEIVED: ${message}`)
             })
-
-            const client_ip = req.connection.remoteAddress
-            console.log(`Connected from ${client_ip}`)
+            let proxy_header_ip
             if (req.headers['x-forwarded-for']) {
-                const proxy_header_ip = req.headers['x-forwarded-for'].split(
+                proxy_header_ip = req.headers['x-forwarded-for'].split(
                     /\s*,\s*/
                 )[0]
                 console.log(`Proxy Header IP is  ${proxy_header_ip}`)
             }
+
+            let client_ip 
+            client_ip = proxy_header_ip ? proxy_header_ip : req.connection.remoteAddress
+            console.log(`Connected from ${client_ip}`)
+
             ws.send(
                 `Soaked Server ${
                     config.send_server_version
