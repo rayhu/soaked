@@ -44,14 +44,14 @@ module.exports = {
             console.log('Provided socket is invalid')
             process.exit(1)
         }
-        const pipe_host = socket[0]
-        const pipe_port = Number(socket[1])
-        if (!Number.isInteger(pipe_port) || pipe_port < 1 || pipe_port > 65535) {
+        const host = socket[0]
+        const port = Number(socket[1])
+        if (!Number.isInteger(port) || port < 1 || port > 65535) {
             console.log('Provided port is invalid')
             process.exit(1)
         }
-        argv.pipe_host = pipe_host
-        argv.pipe_port = pipe_port
+        argv.host = host
+        argv.port = port
 
         // Validate url argument
         if (!argv.url) {
