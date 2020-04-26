@@ -35,21 +35,24 @@ module.exports = {
         ws.on('open', function open () {
             heartbeat()
             if (global.argv.verbose) console.log('WebSockets: Connected')
-            const start_message = `Hello, Soaked Client`.concat(
-                config.send_client_version ? `version: ${config.client_version}` : ''
-            )
-            ws.send(start_message)
-
-            /*
-             * You can also send binary data
-             * const array = new Float32Array(50)
-             * for (var i = 0; i < array.length; ++i) {
-             *     array[i] = i * 2
-             * }
-             * client.send(array)
-             */
+            ws.send( `Hello! Soaked Client. `.concat(
+                config.send_client_version ? `Version: ${config.client_version}` : ''
+            ))
+            ws.send(`ClientID: ${config.client_id}`)
         })
         return ws
     },
-
+    send: (data) =>{
+    /*
+     * const array = new Float32Array(50)
+     * for (var i = 0; i < array.length; ++i) {
+     *     array[i] = i * 2
+     * }
+     * client.send(array)
+     */
+        client.send(data)
+    },
+    isConnected: (ws) =>{
+        return ws.isConnected
+    }
 }
