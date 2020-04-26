@@ -15,7 +15,8 @@
           Soaked
         </q-toolbar-title>
 
-        <div>version 0.0.1</div>
+        <div>version 0.0.1
+        <q-icon name='share'></q-icon></div>
       </q-toolbar>
     </q-header>
 
@@ -111,7 +112,7 @@ export default {
   computed: {
     // a computed getter
     client_ips: function () {
-      return this.clients.map((x) => {return {"link": `#/conn/${x.client_ip}`,"title": x.client_ip, "caption": "click to talk", "icon":"chat"}})
+      return this.clients.map((x) => {return {"link": `#/conn/${x.client_ip}`,"title": x.client_ip, "caption": "click to talk", "icon":"link"}})
 
     }
   },
