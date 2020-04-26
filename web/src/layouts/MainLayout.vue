@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Soaked
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>version 0.0.1</div>
       </q-toolbar>
     </q-header>
 
@@ -59,6 +59,7 @@ export default {
 
   data () {
     return {
+      timer: '',
       clients: [],
       leftDrawerOpen: false,
       essentialLinks: [
@@ -126,13 +127,11 @@ export default {
     }
   },
   mounted: function() {
-    var vm = this;
-    axios.get('http://localhost:9996/pipes')
-      .then(function (response) {
-        const clientsObj=response.data
-        vm.clients = clientsObj.clients
-        console.log(vm.clients)
-      })
+    this.update()
+    this.timer = setInterval(this.update, 3000)
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
   }
 }
 </script>

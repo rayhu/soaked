@@ -12,20 +12,20 @@
       </div>
       <div class="col">      
         <div class="q-ma-md">
-          <q-scroll-area style="height: 600px; max-width: 300px;">
+          <q-scroll-area style="height: 400px; max-width: 300px;">
             <div class="q-py-xs">
-            Jello
-             {{ client_ips }}
+            <p>Chat history here. Use ip addresses for placeholder now</p>
+             {{ client_ips[0].link }}
             </div>
           </q-scroll-area>
         </div>
       </div>
 
       <div class="col">
-        fills remaining available space
+        Send message to the clients:
       </div>
       <div class="col">
-        <q-input filled bottom-slots v-model="text" label="Label" counter maxlength="12" >
+        <q-input filled bottom-slots v-model="text" label="message" counter maxlength="12" >
           <template v-slot:before>
             <q-avatar>
               <img src="https://cdn.quasar.dev/img/avatar5.jpg">
@@ -38,7 +38,7 @@
           </template>
 
           <template v-slot:hint>
-            Field hint
+            Ctrl+Enter to insert a new line
           </template>
 
           <template v-slot:after>
