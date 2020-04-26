@@ -30,12 +30,12 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          CLients Connections
         </q-item-label>
         <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
+          v-for="ip in client_ips"
+          :key="ip"
+          v-bind="ip"
         />
       </q-list>
     </q-drawer>
@@ -48,6 +48,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import axios from "axios"
 
 export default {
   name: 'MainLayout',
@@ -58,6 +59,7 @@ export default {
 
   data () {
     return {
+      clients: [],
       leftDrawerOpen: false,
       essentialLinks: [
         {
@@ -104,6 +106,33 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    // a computed getter
+    client_ips: function () {
+      return this.clients.map((x) => {return {"link": x.client_ip,"title": x.client_ip, "caption": x.client_ip}})
+
+    }
+  },
+  methods: {
+    update (){
+      var vm = this;
+      axios.get('http://localhost:9996/pipes')
+        .then(function (response) {
+          const clientsObj=response.data
+          vm.clients = clientsObj.clients
+          console.log(vm.clients)
+        })
+    }
+  },
+  mounted: function() {
+    var vm = this;
+    axios.get('http://localhost:9996/pipes')
+      .then(function (response) {
+        const clientsObj=response.data
+        vm.clients = clientsObj.clients
+        console.log(vm.clients)
+      })
   }
 }
 </script>
