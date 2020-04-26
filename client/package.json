@@ -10,8 +10,8 @@
         "build": "pkg src/client.js --out-path ./builds",
         "dev": "node src/client.js --verbose localhost:1110",
         "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . ",
-        "watcher": "node src/watcher.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "node src/client.js --verbose localhost:1110 wss://soaked.hulaorui.com:9999",
+        "watcher": "node src/watcher.js"
     },
     "author": "Ray Hu",
     "license": "ISC",

@@ -12,8 +12,8 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
-    "deploy":"rsync -rtvzu --delete dist/spa dish:/home/rayhu/soakhost/html",
-    "deploy:pwa": "rsync -rtvzu --delete dist/pwa dish:/home/rayhu/soakhost/html",
+    "deploy":"rsync -rtvzu --delete dist/spa/* dish:/home/rayhu/soakhost/html",
+    "deploy:pwa": "rsync -rtvzu --delete dist/pwa/* dish:/home/rayhu/soakhost/html",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0"
   },

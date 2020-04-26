@@ -73,7 +73,7 @@ export default {
   methods: {
     async update (){
       var vm = this;
-      axios.get('http://localhost:9996/pipes')
+      axios.get('https://soaked.hulaorui.com/api/pipes')
         .then(function (response) {
           vm.clients=response.data.clients
           const clientsObj=response.data
@@ -83,7 +83,7 @@ export default {
   },
   mounted() {
     var vm = this;
-    axios.get('http://localhost:9996/pipes')
+    axios.get('https://soaked.hulaorui.com/api/pipes')
       .then(function (response) {
         const clientsObj=response.data
         vm.connected_pipes = clientsObj.clients.length

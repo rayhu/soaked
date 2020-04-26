@@ -15,7 +15,7 @@
           Soaked
         </q-toolbar-title>
 
-        <div>version 0.0.1
+        <div>version 0.0.2
         <q-icon name='share'></q-icon></div>
       </q-toolbar>
     </q-header>
@@ -112,14 +112,14 @@ export default {
   computed: {
     // a computed getter
     client_ips: function () {
-      return this.clients.map((x) => {return {"link": `#/conn/${x.client_ip}`,"title": x.client_ip, "caption": "click to talk", "icon":"link"}})
+      return this.clients.map((x) => {return {"link": `#`,"title": x.client_ip, "caption": "click to talk", "icon":"link"}})
 
     }
   },
   methods: {
     update (){
       var vm = this;
-      axios.get('http://localhost:9996/pipes')
+      axios.get('https://soaked.hulaorui.com/api/pipes')
         .then(function (response) {
           const clientsObj=response.data
           vm.clients = clientsObj.clients
