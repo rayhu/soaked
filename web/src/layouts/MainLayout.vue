@@ -111,7 +111,7 @@ export default {
   computed: {
     // a computed getter
     client_ips: function () {
-      return this.clients.map((x) => {return {"link": x.client_ip,"title": x.client_ip, "caption": x.client_ip}})
+      return this.clients.map((x) => {return {"link": `#/conn/${x.client_ip}`,"title": x.client_ip, "caption": "click to talk", "icon":"chat"}})
 
     }
   },

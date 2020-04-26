@@ -5,10 +5,10 @@ client_version: 0.0.1
 
 # Server URL
 #======================
-# If you run a wss server, make sure the server's listening port is same.
+# If you run a wss server, make sure the server is listening port is same.
 server_url: wss://soaked.hulaorui.com:9999
-# 'ws://localhost:9998'
-# 'wss://soaked.hulaorui.com:9999'
+# ws://localhost:9998
+# wss://soaked.hulaorui.com:9999
 
 # Clients will terminate if don't receive ping within this interval
 #======================

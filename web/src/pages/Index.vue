@@ -14,8 +14,8 @@
         <div class="q-ma-md">
           <q-scroll-area style="height: 400px; max-width: 300px;">
             <div class="q-py-xs">
-            <p>Chat history here. Use ip addresses for placeholder now</p>
-             {{ client_ips[0].link }}
+            <p>Chat history here. Use placeholder now</p>
+             {{ client_ips }}
             </div>
           </q-scroll-area>
         </div>

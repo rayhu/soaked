@@ -8,7 +8,7 @@
     "scripts": {
         "start": "node src/client.js",
         "build": "pkg src/client.js --out-path ./builds",
-        "dev": "nodemon src/client.js localhost:1110",
+        "dev": "node src/client.js --verbose localhost:1110",
         "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . ",
         "watcher": "node src/watcher.js",
         "test": "echo \"Error: no test specified\" && exit 1"
