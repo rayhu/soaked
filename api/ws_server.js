@@ -9,12 +9,12 @@ const ws_server = {
         console.log(
             `Soaked Server ${config.server_version} started on port: ${config.server_port}`
         )
-        console.log('visit https://soaked.hulaorui.com for more information')
+        console.log(`visit ${config.soaked_web} for more information`)
 
         // Initialize websockets
         const WebSocket = require('ws')
         const port = config.server_port
-        const wss = new WebSocket.Server({port: `${port}`})
+        const wss = new WebSocket.Server({ port: port})
         // Heart beat
         function noop() {}
         function heartbeat() {
@@ -53,7 +53,7 @@ const ws_server = {
             let client_ip 
             client_ip = proxy_header_ip ? proxy_header_ip : req.connection.remoteAddress
             console.log(`Connected from ${client_ip}`)
-
+            ws.client_ip = client_ip
             ws.send(
                 `Soaked Server ${
                     config.send_server_version

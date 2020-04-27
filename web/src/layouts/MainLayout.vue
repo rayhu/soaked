@@ -12,10 +12,11 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Soaked
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>version 0.0.2
+        <q-icon name='share'></q-icon></div>
       </q-toolbar>
     </q-header>
 
@@ -30,12 +31,12 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          CLients Connections
         </q-item-label>
         <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
+          v-for="ip in client_ips"
+          :key="ip"
+          v-bind="ip"
         />
       </q-list>
     </q-drawer>
@@ -48,6 +49,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import axios from "axios"
 
 export default {
   name: 'MainLayout',
@@ -58,6 +60,8 @@ export default {
 
   data () {
     return {
+      timer: '',
+      clients: [],
       leftDrawerOpen: false,
       essentialLinks: [
         {
@@ -104,6 +108,31 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    // a computed getter
+    client_ips: function () {
+      return this.clients.map((x) => {return {"link": `#`,"title": x.client_ip, "caption": "click to talk", "icon":"link"}})
+
+    }
+  },
+  methods: {
+    update (){
+      var vm = this;
+      axios.get('https://soaked.hulaorui.com/api/pipes')
+        .then(function (response) {
+          const clientsObj=response.data
+          vm.clients = clientsObj.clients
+          console.log(vm.clients)
+        })
+    }
+  },
+  mounted: function() {
+    this.update()
+    this.timer = setInterval(this.update, 3000)
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
   }
 }
 </script>

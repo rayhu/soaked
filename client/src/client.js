@@ -24,7 +24,7 @@ if (argv.verbose) {
 // const client = new WebSocket(argv.url)
 
 // Setup heart beat and connection/close events
-const wsClient = require('./wslib').setup(argv.url)
+const wsClient = require('./wsclient').setup(argv.url)
 
 // Setup heart beat and connection/close events
 const socketClient = require('./socketlib').setup(argv.host, argv.port)
