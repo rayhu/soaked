@@ -7,10 +7,10 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "dev": "node src/client.js --verbose localhost:1110 & node src/watcher.js",
-        "all": "npm-run-all lint build test & run-p watcher",
+        "dev": "electron main.js --verbose localhost:1110 & node src/watcher.js",
+        "all": "npm-run-all lint pkg test & run-p watcher",
         "pkg": "pkg src/client.js --out-path ./builds",
-        "test": "node src/client.js --verbose localhost:1110 wss://soaked.hulaorui.com:9999",
+        "test": "electron main.js --verbose localhost:1110",
         "watcher": "node src/watcher.js",
         "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . "
     },

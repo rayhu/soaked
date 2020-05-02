@@ -1,13 +1,12 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
+const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
 const client = require('./src/client')
 
-function createWindow () {
+function createWindow() {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
-    })
+    const mainWindow = new BrowserWindow({})
 
     // and load the index.html of the app.
     mainWindow.loadFile('index.html')
@@ -34,16 +33,17 @@ app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
 })
 
-
 app.on('ready', () => {
     console.log(process.argv)
-    // Default arguments array is below. Anything more than that are treated as command line. 
+    // Default arguments array is below. Anything more than that are treated as command line.
     // [
     //     'electron.exe',
     //     '.'
     // ]
     let isCalledViaCLI = process.argv && process.argv.length > 2
-    isCalledViaCLI? console.log("Start command line"): console.log("Start GUI")
+    isCalledViaCLI
+        ? console.log('Starting command line')
+        : console.log('Starting GUI')
     let mainWindow
     if (isCalledViaCLI) {
         client.run()
@@ -52,10 +52,10 @@ app.on('ready', () => {
         mainWindow = new BrowserWindow({
             show: true,
             width: 1050,
-            height: 600, 
+            height: 600,
             webPreferences: {
-                preload: path.join(__dirname, 'preload.js')
-            }
+                preload: path.join(__dirname, 'preload.js'),
+            },
         })
     }
 
@@ -71,7 +71,6 @@ app.on('ready', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
 
 // const {app, BrowserWindow} = require('electron')
 
@@ -89,5 +88,3 @@ app.on('ready', () => {
 //     win.loadFile('index.html')
 // }
 //app.whenReady().then(createWindow)
-
-
