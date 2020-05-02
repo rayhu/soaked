@@ -1,7 +1,7 @@
 const net = require('net')
 
 module.exports = {
-    setup: (host, port)=>{
+    setup: (host, port) => {
         const socket = net.createConnection(port, host)
         socket.on('error', function (error) {
             console.log(
@@ -12,11 +12,8 @@ module.exports = {
 
         socket.on('connect', function () {
             console.log(`SOCKET: Connected to socket ${host}:${port}`)
-
         })
 
-        return socket;
-    }
+        return socket
+    },
 }
-
-

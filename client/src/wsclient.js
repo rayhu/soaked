@@ -1,4 +1,3 @@
-
 // Heart beat
 const config = require('./configuration').getAll()
 const WebSocket = require('ws')
@@ -8,7 +7,7 @@ module.exports = {
         const ws = new WebSocket(url)
         let heart_timer
 
-        function heartbeat () {
+        function heartbeat() {
             if (global.argv.verbose) console.log('WebSockets: HEARTBEAT')
             clearTimeout(heart_timer)
             /*
@@ -18,41 +17,38 @@ module.exports = {
              * sends out pings plus a conservative assumption of the latency.
              */
             heart_timer = setTimeout(() => {
-                console.log('WebSockets: Heartbeat not received, disconnecting...')
+                console.log(
+                    'WebSockets: Heartbeat not received, disconnecting...'
+                )
                 ws.terminate()
             }, config.ping_interval)
         }
 
         ws.on('ping', heartbeat)
 
-        ws.on('close', function clear () {
+        ws.on('close', function clear() {
             clearTimeout(this.heart_timer)
         })
-        ws.on('error', function error (error) {
+        ws.on('error', function error(error) {
             console.log(`WebSockets: Error: ${error}`)
         })
 
-        ws.on('open', function open () {
+        ws.on('open', function open() {
             heartbeat()
             if (global.argv.verbose) console.log('WebSockets: Connected')
-            ws.send( `Hello! Soaked Client. `.concat(
-                config.send_client_version ? `Version: ${config.client_version}` : ''
-            ))
+            ws.send(
+                `Hello! Soaked Client. `.concat(
+                    config.send_client_version
+                        ? `Version: ${config.client_version}`
+                        : ''
+                )
+            )
             ws.send(`ClientID: ${config.client_id}`)
         })
         return ws
     },
-    send: (data) =>{
-    /*
-     * const array = new Float32Array(50)
-     * for (var i = 0; i < array.length; ++i) {
-     *     array[i] = i * 2
-     * }
-     * client.send(array)
-     */
-        client.send(data)
-    },
-    isConnected: (ws) =>{
+
+    isConnected: (ws) => {
         return ws.isConnected
-    }
+    },
 }

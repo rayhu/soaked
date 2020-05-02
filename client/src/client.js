@@ -7,7 +7,7 @@ const config = require('./configuration').getAll()
 if (!config.client_id) require('./init').run(config)
 
 // Usage and validation of arguments
-argv = global.argv = require('./args').getAll()
+let argv = (global.argv = require('./args').getAll())
 
 // Starting message
 console.log(`Soaked Client ${config.client_version}
@@ -33,11 +33,11 @@ const duplex = WebSocket.createWebSocketStream(wsClient, {
     encoding: 'utf8',
 })
 
-wsClient.on('message', function incoming (data) {
+wsClient.on('message', function incoming(data) {
     if (argv.verbose) console.log(`WebSockets: RECEIVED: ${data}`)
     // If receive this command, then bridge to the configed socket.
     if (data === 'Please setup pipeline') {
-        console.log("Creating Pipe")
+        console.log('Creating Pipe')
         duplex.pipe(socketClient)
         // Cannot directly pipe, as it will pipe the end event. Please don't use redirect.pipe(duplex), instead, handle data event separately.
         /*
@@ -54,6 +54,3 @@ wsClient.on('message', function incoming (data) {
         })
     }
 })
-
-
-

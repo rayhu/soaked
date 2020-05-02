@@ -7,11 +7,12 @@
     "main": "client.js",
     "scripts": {
         "start": "node src/client.js",
+        "dev": "node src/client.js --verbose localhost:1110 & node src/watcher.js",
+        "all": "npm-run-all lint build test & run-p watcher",
         "build": "pkg src/client.js --out-path ./builds",
-        "dev": "node src/client.js --verbose localhost:1110",
-        "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . ",
         "test": "node src/client.js --verbose localhost:1110 wss://soaked.hulaorui.com:9999",
-        "watcher": "node src/watcher.js"
+        "watcher": "node src/watcher.js",
+        "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . "
     },
     "author": "Ray Hu",
     "license": "ISC",
@@ -37,6 +38,7 @@
     "devDependencies": {
         "eslint": "^6.8.0",
         "nodemon": "^2.0.3",
+        "npm-run-all": "^4.1.5",
         "pkg": "^4.4.7",
         "prettier": "2.0.4"
     },

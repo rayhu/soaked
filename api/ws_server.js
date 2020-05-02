@@ -14,7 +14,7 @@ const ws_server = {
         // Initialize websockets
         const WebSocket = require('ws')
         const port = config.server_port
-        const wss = new WebSocket.Server({ port: port})
+        const wss = new WebSocket.Server({port: port})
         // Heart beat
         function noop() {}
         function heartbeat() {
@@ -50,8 +50,10 @@ const ws_server = {
                 console.log(`Proxy Header IP is  ${proxy_header_ip}`)
             }
 
-            let client_ip 
-            client_ip = proxy_header_ip ? proxy_header_ip : req.connection.remoteAddress
+            let client_ip
+            client_ip = proxy_header_ip
+                ? proxy_header_ip
+                : req.connection.remoteAddress
             console.log(`Connected from ${client_ip}`)
             ws.client_ip = client_ip
             ws.send(
