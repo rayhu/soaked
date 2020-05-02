@@ -17,7 +17,7 @@ function createWindow() {
     // Create the main browser window
     if (isCalledViaCLI) {
         require('./src/client').run()
-        mainWindow = new BrowserWindow({ show: false, width: 0, height: 0 })
+        mainWindow = new BrowserWindow({show: false, width: 0, height: 0})
     } else {
         mainWindow = new BrowserWindow({
             show: true,
@@ -25,12 +25,12 @@ function createWindow() {
             height: 600,
             webPreferences: {
                 nodeIntegration: true,
-                preload: path.join(__dirname, 'preload.js'),
+                preload: path.join(__dirname, './public/preload.js'),
             },
         })
 
         // and load the index.html of the app.
-        mainWindow.loadFile('index.html')
+        mainWindow.loadFile('./public/index.html')
 
         // Open the DevTools.
         mainWindow.webContents.openDevTools()

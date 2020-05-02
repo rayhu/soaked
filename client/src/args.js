@@ -40,7 +40,7 @@ module.exports = {
 
         // Validate socket argument
         const socket = argv.socket.split(':')
-        if (socket.length != 2) {
+        if (socket.length !== 2) {
             console.log('Provided socket is invalid')
             process.exit(1)
         }
