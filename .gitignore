@@ -115,14 +115,11 @@ dist
 .pnp.*
 
 # build
-/**/builds/*
 client.tar.gz
 client/builds/*
-/**/build/*
 
 # remove old files
 *.old
-
 
 # config file
 config.yml
@@ -162,5 +159,18 @@ yarn-error.log*
 *.njsproj
 *.sln
 web/.envui
+.vscode
+*.sw?
 
+.DS_Store
+node_modules
+/dist
 
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
