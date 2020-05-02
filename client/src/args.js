@@ -2,7 +2,7 @@ module.exports = {
     getAll: () => {
         const config = require('./configuration').getAll()
         let argv = require('yargs').usage(
-            '$0 <socket> [url]',
+            '$0 [socket] [url]',
             `Soaked Client creates bridge between the TCP socket <host:port> and
             the WebSockets url. After it is established, this local socket is
             reachable securely by any webpage in browsers from Internet.

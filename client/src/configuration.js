@@ -1,7 +1,7 @@
 const fs = require('fs')
 const yaml = require('js-yaml')
 const path = require('path')
-const configFileFullName = path.join(__dirname, 'config.yml')
+const configFileFullName = path.join(__dirname, '../config.yml')
 
 const configurations = {
     getAll() {

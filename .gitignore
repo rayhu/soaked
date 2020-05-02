@@ -115,7 +115,10 @@ dist
 .pnp.*
 
 # build
-/builds/
+/**/builds/*
+client.tar.gz
+client/builds/*
+/**/build/*
 
 # remove old files
 *.old
@@ -159,4 +162,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 web/.envui
-client.tar.gz
+
+
