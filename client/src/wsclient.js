@@ -5,18 +5,18 @@ const WebSocket = require('ws')
 module.exports = {
     setup: (url) => {
         const ws = new WebSocket(url)
-        let heart_timer
+        let heartTimer
 
         function heartbeat() {
             if (global.argv.verbose) console.log('WebSockets: HEARTBEAT')
-            clearTimeout(heart_timer)
+            clearTimeout(heartTimer)
             /*
              * Use `WebSocket#terminate()`, which immediately destroys the connection,
              * instead of `WebSocket#close()`, which waits for the close timer.
              * Delay should be equal to the interval at which your server
              * sends out pings plus a conservative assumption of the latency.
              */
-            heart_timer = setTimeout(() => {
+            heartTimer = setTimeout(() => {
                 console.log(
                     'WebSockets: Heartbeat not received, disconnecting...'
                 )
@@ -37,7 +37,7 @@ module.exports = {
             heartbeat()
             if (global.argv.verbose) console.log('WebSockets: Connected')
             ws.send(
-                `Hello! Soaked Client. `.concat(
+                'Hello! Soaked Client. '.concat(
                     config.send_client_version
                         ? `Version: ${config.client_version}`
                         : ''

@@ -9,7 +9,7 @@ function createWindow() {
     //     'electron.exe',
     //     '.'
     // ]
-    let isCalledViaCLI = process.argv && process.argv.length > 2
+    const isCalledViaCLI = process.argv && process.argv.length > 2
     isCalledViaCLI
         ? console.log('Starting command line')
         : console.log('Starting GUI')
@@ -17,7 +17,7 @@ function createWindow() {
     // Create the main browser window
     if (isCalledViaCLI) {
         require('./src/client').run()
-        mainWindow = new BrowserWindow({ show: false, width: 0, height: 0 })
+        mainWindow = new BrowserWindow({show: false, width: 0, height: 0})
     } else {
         mainWindow = new BrowserWindow({
             show: true,

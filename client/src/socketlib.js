@@ -7,7 +7,7 @@ module.exports = {
             console.log(
                 `SOCKET: Connection to ${host}:${port} failed with error: ${error}`
             )
-            //ws.send(`Pipeline creation failed: ${error}`)
+            // ws.send(`Pipeline creation failed: ${error}`)
         })
 
         socket.on('connect', function () {
