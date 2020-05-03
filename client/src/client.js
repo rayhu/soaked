@@ -10,7 +10,7 @@ module.exports = {
         if (!config.client_id) require('./init').run(config)
 
         // Usage and validation of arguments
-        let argv = (global.argv = require('./args').getAll())
+        const argv = (global.argv = require('./args').getAll())
 
         // Starting message
         console.log(`Soaked Client ${config.client_version}
@@ -18,7 +18,7 @@ visit https://soaked.hulaorui.com for more information
 `)
 
         if (argv.verbose) {
-            console.log(`Arguments`)
+            console.log('Arguments')
             console.log(argv)
             console.log(`WebSockets: Connecting to: ${argv.url}`)
         }
