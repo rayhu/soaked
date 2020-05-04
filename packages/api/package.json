@@ -1,6 +1,6 @@
 {
-    "name": "soaked",
-    "version": "1.0.0",
+    "name": "soakedapi",
+    "version": "0.0.2",
     "description": "A soaked client to establish websocket bridge",
     "homepage": "https://soaked.hulaorui.com",
     "repository": "https://github.com/rayhu/soaked",

@@ -1,6 +1,6 @@
 {
-  "name": "soakserver",
-  "version": "0.0.1",
+  "name": "soakedweb",
+  "version": "0.0.2",
   "description": "A Quasar Framework app",
   "productName": "Soaked Server",
   "cordovaId": "org.cordova.quasar.app",
