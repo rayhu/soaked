@@ -26,13 +26,13 @@
         "morgan": "~1.9.1",
         "optimist": "latest",
         "pug": "^2.0.4",
-        "ws": "^7.2.3"
+        "ws": "^7.2.5"
     },
     "devDependencies": {
         "eslint": "^6.8.0",
         "nodemon": "^2.0.3",
-        "pkg": "^4.4.7",
-        "prettier": "2.0.4"
+        "pkg": "^4.4.8",
+        "prettier": "^2.0.5"
     },
     "optionalDependencies": {
         "bufferutil": "^4.0.1",
