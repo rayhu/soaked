@@ -9,7 +9,7 @@ function createWindow() {
     //     'electron.exe',
     //     '.'
     // ]
-    let isCalledViaCLI = process.argv && process.argv.length > 2
+    const isCalledViaCLI = process.argv && process.argv.length > 2
     isCalledViaCLI
         ? console.log('Starting command line')
         : console.log('Starting GUI')

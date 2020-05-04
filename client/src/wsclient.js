@@ -37,7 +37,7 @@ module.exports = {
             heartbeat()
             if (global.argv.verbose) console.log('WebSockets: Connected')
             ws.send(
-                `Hello! Soaked Client. `.concat(
+                'Hello! Soaked Client. '.concat(
                     config.send_client_version
                         ? `Version: ${config.client_version}`
                         : ''
