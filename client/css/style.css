@@ -1,0 +1,32 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: DodgerBlue; */
+}
+
+.flex-container>div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+}
+
+body {
+    font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+}
+
+header {
+    position: static;
+    font-size: 48px;
+}
+
+footer {
+    position: absolute;
+    left: 16px;
+    bottom: 10px;
+    font-size: 14px;
+}
+
+#log {
+    width: 500px;
+    height: 250px;
+}

@@ -122,7 +122,6 @@ client/builds/*
 *.old
 
 # config file
-config.yml
 .vs_code/*
 
 .DS_Store

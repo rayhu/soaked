@@ -1,0 +1,6 @@
+send_server_version: true
+server_version: 0.0.1
+server_port: 9998
+poll_interval: 5000
+api_port: 9996
+soaked_web: https://soaked.hulaorui.com 
