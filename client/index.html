@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" /> -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>Soaked Client</title>
@@ -17,16 +17,21 @@
         <div class="flex-container">
             <div>
                 Socket
-                <input type="text" id="socket" placeholder="host:port">
+                <input type="text" id="txtHost" placeholder="localhost">
+                <input type="text" id="txtPort" placeholder="port">
                 <button id="btnConnect">Connect</button>
             </div>
             <div>
                 <div>Log</div>
-                <textarea id="log" placeholder="log"></textarea>
+                <textarea id="txtLog" placeholder="log"></textarea>
+            </div>
+            <div>
+                <input type="checkbox" id="btnWatcher" /><label>local watcher</label>
             </div>
         </div>
     </section>
     <footer>
+
         We are using Node.js <span id="node-version"></span>, Chromium
         <span id="chrome-version"></span>, and Electron
         <span id="electron-version"></span>.

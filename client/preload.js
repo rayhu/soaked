@@ -15,6 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // add onclick event for connect button
-    document.getElementById("btnConnect").addEventListener("click", click);
+    document.getElementById("btnConnect").addEventListener("click", connect);
+
+    document.getElementById("btnWatcher").addEventListener("click", localwatcher);
+    
 
 })

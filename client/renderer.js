@@ -5,10 +5,21 @@
 // selectively enable features needed in the rendering
 // process.
 
-
-function click () {
-    console.log("Clicked")
+function connect () {
+    const host = txtHost.value ? txtHost:`localhost`
+    const port = txtPort.value ? Number.parseInt(txtPort.value): 1110
+    console.log(`connecting to ${host}:${port}`)
     let client = require('./src/client')
-    console.log(global)
     client.run()
+}
+
+function localwatcher(){
+    const local = require('./src/localwatch')
+    const port = txtPort.value ? Number.parseInt(txtPort.value) : 1110
+
+    if(btnWatcher.checked){
+        local.listen(port)
+    } else{
+        local.close()
+    }
 }

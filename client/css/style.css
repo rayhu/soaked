@@ -26,7 +26,16 @@ footer {
     font-size: 14px;
 }
 
-#log {
+#txtHost {
+    width: 100px;
+}
+
+#txtPort {
+    width: 40px;
+    
+}
+
+#txtLog {
     width: 500px;
-    height: 250px;
+    height: 150px;
 }
