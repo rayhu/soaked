@@ -4,6 +4,7 @@ env:
 extends:
     - 'plugin:vue/essential'
     - standard
+    - prettier
 globals:
     Atomics: readonly
     SharedArrayBuffer: readonly

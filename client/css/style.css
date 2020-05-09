@@ -4,14 +4,15 @@
     /* background-color: DodgerBlue; */
 }
 
-.flex-container>div {
+.flex-container > div {
     background-color: #f1f1f1;
     margin: 10px;
     padding: 20px;
 }
 
 body {
-    font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+    font-family: Tahoma, Helvetica, Arial, 'Microsoft Yahei', '微软雅黑',
+        STXihei, '华文细黑', sans-serif;
 }
 
 header {
@@ -32,7 +33,6 @@ footer {
 
 #txtPort {
     width: 40px;
-    
 }
 
 #txtLog {
