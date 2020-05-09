@@ -175,4 +175,5 @@ yarn-debug.log*
 yarn-error.log*
 
 #local config files
-config.yml
+**/config.yml
+client/config.yml

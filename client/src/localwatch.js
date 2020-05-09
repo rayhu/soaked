@@ -1,7 +1,7 @@
-let server;
+let server
 
 module.exports = {
-    listen (port) {
+    listen(port) {
         const net = require('net')
 
         server = net.createServer(function (socket) {
@@ -9,10 +9,9 @@ module.exports = {
             socket.pipe(process.stdout)
             process.stdin.pipe(socket)
         })
-        server.listen(port ? port : 1110)
+        server.listen(port || 1110)
     },
-    close(){
+    close() {
         server.close()
-    }
-
+    },
 }

@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 
 module.exports = {
+    getArgs: () => {
+        // Usage and validation of arguments
+        const argv = (global.argv = require('./args').getAll())
+        return argv
+    },
     run: () => {
+        // argv= getArgs()
+        const argv = (global.argv = require('./args').getAll())
+
         const WebSocket = require('ws')
         // Get configuration
         const config = require('./configuration').getAll()
 
         // generated client id at the first run
         if (!config.client_id) require('./init').run(config)
-
-        // Usage and validation of arguments
-        const argv = (global.argv = require('./args').getAll())
 
         // Starting message
         console.log(`Soaked Client ${config.client_version}

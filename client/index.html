@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'"
+        />
+        <meta
+            http-equiv="X-Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <title>Soaked Client</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
-    <title>Soaked Client</title>
-</head>
-
-<body>
-    <header>Soaked Client</header>
-    <section>
-        <div class="flex-container">
-            <div>
-                Socket
-                <input type="text" id="txtHost" placeholder="localhost">
-                <input type="text" id="txtPort" placeholder="port">
-                <button id="btnConnect">Connect</button>
+    <body>
+        <header>Soaked Client</header>
+        <section>
+            <div class="flex-container">
+                <div>
+                    Socket
+                    <input type="text" id="txtHost" placeholder="localhost" />
+                    <input type="text" id="txtPort" placeholder="port" />
+                    <button id="btnConnect">Connect</button>
+                </div>
+                <div>
+                    <div>Log</div>
+                    <textarea id="txtLog" placeholder="log"></textarea>
+                </div>
+                <div>
+                    <input type="checkbox" id="btnWatcher" /><label
+                        >local watcher</label
+                    >
+                </div>
             </div>
-            <div>
-                <div>Log</div>
-                <textarea id="txtLog" placeholder="log"></textarea>
-            </div>
-            <div>
-                <input type="checkbox" id="btnWatcher" /><label>local watcher</label>
-            </div>
-        </div>
-    </section>
-    <footer>
-
-        We are using Node.js <span id="node-version"></span>, Chromium
-        <span id="chrome-version"></span>, and Electron
-        <span id="electron-version"></span>.
-    </footer>
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-</body>
-
+        </section>
+        <footer>
+            We are using Node.js <span id="node-version"></span>, Chromium
+            <span id="chrome-version"></span>, and Electron
+            <span id="electron-version"></span>.
+        </footer>
+        <!-- You can also require other files to run in this process -->
+        <script src="./renderer.js"></script>
+    </body>
 </html>
