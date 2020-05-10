@@ -2,9 +2,17 @@ const createError = require('http-errors')
 const express = require('express')
 //const path = require('path')
 const cookieParser = require('cookie-parser')
+
+// const bodyParser = require('body-parser')
+// // create application/json parser
+// const jsonParser = bodyParser.json()
+// // create application/x-www-form-urlencoded parser
+// const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 const logger = require('morgan')
 
 const indexRouter = require('./routes/index')
+const clientsRouter = require('./routes/clients')
 const pipesRouter = require('./routes/pipes')
 const usersRouter = require('./routes/users')
 
@@ -28,6 +36,7 @@ app.use(cookieParser())
 // app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
+app.use('/clients', clientsRouter)
 app.use('/pipes', pipesRouter)
 app.use('/users', usersRouter)
 
