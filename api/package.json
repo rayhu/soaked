@@ -21,6 +21,7 @@
         "debug": "~2.6.9",
         "express": "^4.17.1",
         "http-errors": "~1.6.3",
+        "ipaddr.js": "^1.9.1",
         "js-yaml": "^3.13.1",
         "mime-types": "latest",
         "morgan": "~1.9.1",

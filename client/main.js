@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const client = require('./src/clientlib')
 
 function createWindow() {
     // console.log(process.argv)
@@ -16,7 +17,7 @@ function createWindow() {
     let mainWindow
     // Create the main browser window
     if (isCalledViaCLI) {
-        require('./src/client').run()
+        client.run()
         mainWindow = new BrowserWindow({show: false, width: 0, height: 0})
     } else {
         mainWindow = new BrowserWindow({

@@ -11,6 +11,7 @@
         "all": "npm-run-all lint pkg test & run-p watcher",
         "pkg": "pkg src/client.js --out-path ./builds",
         "test": "electron main.js --verbose localhost:1110",
+        "testlocal": "node src/client.js --verbose localhost:1110 ws://localhost:9998",
         "watcher": "node src/watcher.js",
         "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . "
     },

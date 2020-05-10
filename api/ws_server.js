@@ -1,8 +1,9 @@
 /*
- * Const uuid=require("uuid")
- * Get configuration
  */
 
+// expect client to send this prefix and then the actual ID
+const clientIdPrefix = 'ClientID: '
+const ipAddr = require('ipaddr.js')
 const ws_server = {
     start(config) {
         // Log Start Message
@@ -23,7 +24,7 @@ const ws_server = {
 
         // Ping all clients every 30 seconds
         const interval = setInterval(function ping() {
-            console.log(`PING ${wss.clients.size} clients...`)
+            console.log(`Sending HEARTBEAT to ${wss.clients.size} clients...`)
             wss.clients.forEach(function each(ws) {
                 if (ws.isAlive === false) {
                     return ws.terminate()
@@ -39,9 +40,24 @@ const ws_server = {
 
         // Handle on connection to server
         wss.on('connection', function connection(ws, req) {
-            ws.on('message', function incoming(message) {
+            // keep client HEARTBEAT
+            ws.on('pong', heartbeat)
+
+            // log the client message
+            ws.on('message', function incoming( message) {
                 console.log(`RECEIVED: ${message}`)
+                try{
+                    if (message.startsWith(clientIdPrefix)) {
+                        ws.client_id = message.substr(clientIdPrefix.length)
+                        console.log(`detected id:${ws.client_id}`)
+                    }
+                }
+                catch{
+                    console.log(message)
+                }
             })
+
+            // fine the client real IP, if deployed behind reverse proxy
             let proxy_header_ip
             if (req.headers['x-forwarded-for']) {
                 proxy_header_ip = req.headers['x-forwarded-for'].split(
@@ -50,12 +66,23 @@ const ws_server = {
                 console.log(`Proxy Header IP is  ${proxy_header_ip}`)
             }
 
-            let client_ip
-            client_ip = proxy_header_ip
+            let client_ip = proxy_header_ip
                 ? proxy_header_ip
                 : req.connection.remoteAddress
-            console.log(`Connected from ${client_ip}`)
-            ws.client_ip = client_ip
+            
+            const ip = ipAddr.parse(client_ip)
+            console.log(`ipv4 is ${ip.toIPv4Address()}`)
+            // save both ipv4 and ipv6 versions
+            if (ip.kind==='ipv4'){
+                ws.client_ip = client_ip
+                ws.client_ipv6 = `::ffff:${client_ip}`
+            } else {
+                ws.client_ip = ip.toIPv4Address().toString()
+                ws.client_ipv6 = client_ip
+            }
+
+            console.log(`Connected from ${ws.client_ip}`)
+
             ws.send(
                 `Soaked Server ${
                     config.send_server_version
@@ -66,7 +93,6 @@ const ws_server = {
             ws.send(`Your public ip is: ${client_ip}`)
 
             ws.isAlive = true
-            ws.on('pong', heartbeat)
             console.log('Please create pipeline')
             ws.send('Please setup pipeline')
         })
