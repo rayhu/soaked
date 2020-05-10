@@ -44,15 +44,14 @@ const ws_server = {
             ws.on('pong', heartbeat)
 
             // log the client message
-            ws.on('message', function incoming( message) {
+            ws.on('message', function incoming(message) {
                 console.log(`RECEIVED: ${message}`)
-                try{
+                try {
                     if (message.startsWith(clientIdPrefix)) {
                         ws.client_id = message.substr(clientIdPrefix.length)
                         console.log(`detected id:${ws.client_id}`)
                     }
-                }
-                catch{
+                } catch (e) {
                     console.log(message)
                 }
             })
@@ -69,11 +68,11 @@ const ws_server = {
             let client_ip = proxy_header_ip
                 ? proxy_header_ip
                 : req.connection.remoteAddress
-            
+
             const ip = ipAddr.parse(client_ip)
             console.log(`ipv4 is ${ip.toIPv4Address()}`)
             // save both ipv4 and ipv6 versions
-            if (ip.kind==='ipv4'){
+            if (ip.kind === 'ipv4') {
                 ws.client_ip = client_ip
                 ws.client_ipv6 = `::ffff:${client_ip}`
             } else {

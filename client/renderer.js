@@ -37,13 +37,13 @@ function connect() {
     client.run()
 }
 
-function localwatcher(){
+function localwatcher() {
     const local = require('./src/localwatch')
     const port = txtPort.value ? Number.parseInt(txtPort.value) : 1110
 
-    if(btnWatcher.checked){
+    if (btnWatcher.checked) {
         local.listen(port)
-    } else{
+    } else {
         local.close()
     }
 }
