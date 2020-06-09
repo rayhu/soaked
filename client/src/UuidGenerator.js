@@ -1,6 +1,6 @@
-const uuid = require("uuid/v4")
-const UuidEncoder = require("uuid-encoder")
-const encoder = new UuidEncoder("base58")
+const uuid = require('uuid/v4')
+const UuidEncoder = require('uuid-encoder')
+const encoder = new UuidEncoder('base58')
 
 class UuidGenerator {
     constructor(name) {
@@ -11,7 +11,7 @@ class UuidGenerator {
      * Generates a new uuid
      * @returns {uuid}
      */
-    static generate () {
+    static generate() {
         return uuid()
     }
 
@@ -20,8 +20,8 @@ class UuidGenerator {
      * @param {string} uuidString
      * @returns {string}
      */
-    static toShortId (uuidString) {
-        if (!uuidString) throw Error("uuid parameter is required")
+    static toShortId(uuidString) {
+        if (!uuidString) throw Error('uuid parameter is required')
 
         return encoder.encode(uuidString)
     }
@@ -30,8 +30,8 @@ class UuidGenerator {
      * Converts shortId to uuid
      * @param shortId
      */
-    static fromShortId (shortId) {
-        if (!shortId) throw Error("uuid parameter is required")
+    static fromShortId(shortId) {
+        if (!shortId) throw Error('uuid parameter is required')
 
         return encoder.decode(shortId)
     }

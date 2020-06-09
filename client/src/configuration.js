@@ -1,7 +1,7 @@
 const fs = require('fs')
 const yaml = require('js-yaml')
 const path = require('path')
-const configFileFullName = path.join(__dirname, 'config.yml')
+const configFileFullName = path.join(__dirname, '../config.yml')
 
 const configurations = {
     getAll() {
@@ -25,7 +25,7 @@ const configurations = {
         }
     },
 
-    saveAll (configObj){
+    saveAll(configObj) {
         try {
             const yamlStr = yaml.safeDump(configObj)
             fs.writeFileSync(configFileFullName, yamlStr, 'utf8')
