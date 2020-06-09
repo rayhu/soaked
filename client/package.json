@@ -4,13 +4,16 @@
     "description": "A soaked client to establish websocket bridge",
     "homepage": "https://soaked.hulaorui.com",
     "repository": "https://github.com/rayhu/soaked",
-    "main": "client.js",
+    "main": "main.js",
     "scripts": {
-        "start": "node src/client.js",
-        "build": "pkg src/client.js --out-path ./builds",
-        "dev": "nodemon src/client.js",
-        "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . ",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "electron .",
+        "dev": "electron main.js --verbose localhost:1110 & node src/watcher.js",
+        "all": "npm-run-all lint pkg test & run-p watcher",
+        "pkg": "pkg src/client.js --out-path ./builds",
+        "test": "electron main.js --verbose localhost:1110",
+        "testlocal": "node src/client.js --verbose localhost:1110 ws://localhost:9998",
+        "watcher": "node src/watcher.js",
+        "lint": "eslint --ignore-path ../.gitignore . --fix && prettier --write . "
     },
     "author": "Ray Hu",
     "license": "ISC",
@@ -30,14 +33,27 @@
         "uuid": "^7.0.3",
         "uuid-encoder": "^1.2.0",
         "valid-url": "^1.0.9",
-        "ws": "^7.2.3",
+        "ws": "^7.2.5",
         "yargs": "^15.3.1"
     },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.30.0",
+        "@typescript-eslint/parser": "^2.30.0",
+        "electron": "^8.2.5",
+        "electron-builder": "^22.6.0",
         "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "eslint-plugin-vue": "^6.2.2",
         "nodemon": "^2.0.3",
-        "pkg": "^4.4.7",
-        "prettier": "2.0.4"
+        "npm-run-all": "^4.1.5",
+        "pkg": "^4.4.8",
+        "prettier": "^2.0.4",
+        "typescript": "^3.8.3"
     },
     "optionalDependencies": {
         "bufferutil": "^4.0.1",
